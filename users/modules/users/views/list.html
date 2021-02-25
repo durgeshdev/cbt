@@ -1,0 +1,88 @@
+<div class="row" ng-app="cbtApp" ng-controller="cbtController">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading greyblue">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card">
+                                <div class="card-body">
+                                    <div class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row">
+                                            <div class="col-md-12  table-responsive">
+                                                <table class="table table-hover dataTable table-striped table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="10%">Name</th>
+                                                            <th width="10%">Marks</th>
+                                                            <th width="25%">Percentage</th>
+                                                            <th>Subjects</th>
+                                                            <th width="15%">Last Updated</th>
+                                                            <!-- <th width="10%">Status</th> -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody ng-model="ctrl.students">
+                                                        <tr ng-repeat="record in ctrl.students">
+                                                            <td>
+                                                                <span>
+                                                                    <input type="text" class="editable-cell" ng-change="ctrl.myFunc(record)" ng-model="record.name" />
+                                                                </span>
+                                                            </td>
+                                                            <td scope="row">
+                                                                <span>
+                                                                    <input type="text" class="editable-cell" ng-change="ctrl.myFunc(record)" ng-model="record.marks" />
+                                                                </span>
+                                                            </td>
+                                                            <td scope="row">
+                                                                <span>
+                                                                    <input type="text" class="editable-cell" ng-change="ctrl.myFunc(record)" ng-model="record.percentage" />
+                                                                </span>
+                                                            </td>
+                                                            <td scope="row">
+                                                                <span ng-repeat="item in record.subjects">
+                                                                    <!-- {{item.name}}   -->
+                                                                    <input type="text" class="editable-cell" ng-change="ctrl.myFunc(record, 'sub')" ng-model="item.name" />
+                                                                    {{$last ? '' : ', '}}
+                                                                </span>
+                                                                <!-- <div ng-if="record._id == null" editable-text="record.description" e-name="description" e-form="rowform" onbeforesave="ctrl.checkRequired($data, 'description')">{{record.description}}</div>
+                                                                <div ng-if="record._id != null" class="hide-editable-click" buttons="no" editable-text="record.description" onbeforesave="ctrl.updateEditInline($data, record._id, 'description', true)" e-single>{{record.description || '-'}}</div> -->
+                                                            </td>
+                                                            <td>{{record.updatedAt | date:'yyyy/MM/dd'}}</td>
+                                                            
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .hide-editable-click  {
+    color: #495057;
+    border-bottom: none;
+    }
+
+    input:focus {
+    /* change more attributes, if you want. */
+}
+input {
+    border:none;
+    background-color:transparent;
+}
+.container header {
+    padding-bottom:20px;
+    border-bottom:1px solid black;
+}
+ul, input, .container {
+    padding:10px;
+}
+    </style>
